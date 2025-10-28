@@ -8,9 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+// CORS configuration
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production'
-    ? [process.env.FRONTEND_URL, process.env.VERCEL_URL].filter((url): url is string => Boolean(url))
+    ? ['https://cipher-studio-xi.vercel.app', /\.vercel\.app$/]  // Allow your Vercel domain
     : ['http://localhost:5173', 'http://localhost:3000'],
   credentials: true,
 };
