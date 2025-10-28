@@ -1,16 +1,28 @@
 # CipherStudio Deployment URLs
 
-## ⚠️ IMPORTANT: Vercel Cache Issue
+## ✅ Build Status: SUCCESS!
 
-**The build is failing due to Vercel caching old package-lock.json**
+Frontend and backend are both deployed and building successfully.
 
-### 🔧 FIX: Redeploy with "Skip Build Cache"
+## ⚠️ FINAL STEP: Configure Environment Variables
 
-1. Go to https://vercel.com/dashboard
-2. Select project: `cipher-studio-xi`
-3. Deployments → Click "..." on latest → Redeploy
-4. **✓ Check "Skip Build Cache"**
-5. Click Redeploy
+**Current issue**: Frontend trying to connect to localhost instead of deployed backend.
+
+### 🔧 Configure in Vercel Dashboard
+
+#### Backend Environment Variables
+Project: `react-backend-hn7n`
+```
+FRONTEND_URL=https://cipher-studio-xi.vercel.app
+```
+
+#### Frontend Environment Variables
+Project: `cipher-studio-xi`
+```
+VITE_API_URL=https://react-backend-hn7n.vercel.app/api
+```
+
+**After adding variables, redeploy both projects!**
 
 ---
 
