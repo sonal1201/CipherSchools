@@ -2,7 +2,10 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import axios from 'axios';
 import { clearOldLocalStorageProjects } from '../utils/clearOldData';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+// In production on Vercel, use relative path (same domain)
+// In development, use localhost:3001
+const API_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3001/api');
 
 interface User {
   id: string;

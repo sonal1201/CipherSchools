@@ -129,6 +129,27 @@ npm run build            # Build for production
 - `PUT /api/projects/:id` - Update project
 - `DELETE /api/projects/:id` - Delete project
 
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended - All-in-One)
+
+Deploy both frontend and backend to Vercel for free!
+
+**Quick Steps:**
+1. Create MongoDB Atlas account (free)
+2. Import project to Vercel from GitHub
+3. Add environment variables (DATABASE_URL, JWT_SECRET)
+4. Deploy!
+
+**📖 Detailed Guide:** See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)
+
+### Alternative: Split Deployment
+
+- **Frontend** → Vercel
+- **Backend** → Railway/Render
+
+**📖 Guide:** See [DEPLOYMENT.md](./DEPLOYMENT.md)
+
 ## 🐛 Troubleshooting
 
 **Backend won't start?**
