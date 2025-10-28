@@ -2,9 +2,8 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import axios from 'axios';
 import { clearOldLocalStorageProjects } from '../utils/clearOldData';
 
-// Simple and reliable: default to /api, only use localhost in dev mode
-const API_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.DEV ? 'http://localhost:3001/api' : '/api');
+// Use /api by default (production), only localhost if explicitly in dev
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 interface User {
   id: string;

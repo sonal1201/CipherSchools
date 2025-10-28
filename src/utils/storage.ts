@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { Project, AppSettings } from '../types';
 
-// Simple and reliable: default to /api, only use localhost in dev mode
-const API_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.DEV ? 'http://localhost:3001/api' : '/api');
+// Use /api by default (production), only localhost if explicitly in dev
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 const SETTINGS_KEY = 'cipherstudio_settings';
 
 // Helper function to get auth headers
