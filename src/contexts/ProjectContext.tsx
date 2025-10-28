@@ -17,6 +17,8 @@ interface ProjectContextType {
   saveCurrentProject: () => Promise<void>;
 }
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ProjectContext = createContext<ProjectContextType | undefined>(undefined);
 
 export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -71,7 +73,7 @@ export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children })
   const createNewProject = async (name: string, description: string): Promise<Project> => {
     try {
       // Create project directly in MongoDB via API
-      const response = await fetch('http://localhost:3001/api/projects', {
+      const response = await fetch(`${API_URL}/api/projects`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
