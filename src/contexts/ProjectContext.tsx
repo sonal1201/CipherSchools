@@ -73,7 +73,7 @@ export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children })
   const createNewProject = async (name: string, description: string): Promise<Project> => {
     try {
       // Create project directly in MongoDB via API
-      const response = await fetch(`${API_URL}/api/projects`, {
+      const response = await fetch(`${API_URL}/projects`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
