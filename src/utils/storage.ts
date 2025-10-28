@@ -6,6 +6,12 @@ const API_URL = import.meta.env.VITE_API_URL ||
   (import.meta.env.DEV ? 'http://localhost:3001/api' : '/api');
 const SETTINGS_KEY = 'cipherstudio_settings';
 
+// Helper function to get auth headers
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('token');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
 // Project Storage - Now using backend API
 export const saveProject = async (project: Project): Promise<void> => {
   try {
@@ -18,14 +24,14 @@ export const saveProject = async (project: Project): Promise<void> => {
         name: project.name,
         description: project.description,
         files: project.files,
-      });
+      }, { headers: getAuthHeaders() });
     } else {
       // New project - create it in MongoDB
       await axios.post(`${API_URL}/projects`, {
         name: project.name,
         description: project.description,
         files: project.files,
-      });
+      }, { headers: getAuthHeaders() });
     }
   } catch (error) {
     console.error('Failed to save project:', error);
@@ -35,7 +41,9 @@ export const saveProject = async (project: Project): Promise<void> => {
 
 export const getProject = async (projectId: string): Promise<Project | null> => {
   try {
-    const response = await axios.get(`${API_URL}/projects/${projectId}`);
+    const response = await axios.get(`${API_URL}/projects/${projectId}`, { 
+      headers: getAuthHeaders() 
+    });
     return response.data.project;
   } catch (error) {
     console.error('Failed to get project:', error);
@@ -45,7 +53,9 @@ export const getProject = async (projectId: string): Promise<Project | null> => 
 
 export const getAllProjects = async (): Promise<Record<string, Project>> => {
   try {
-    const response = await axios.get(`${API_URL}/projects`);
+    const response = await axios.get(`${API_URL}/projects`, { 
+      headers: getAuthHeaders() 
+    });
     const projects = response.data.projects;
     
     // Convert array to record for backward compatibility
@@ -63,7 +73,9 @@ export const getAllProjects = async (): Promise<Record<string, Project>> => {
 
 export const deleteProject = async (projectId: string): Promise<void> => {
   try {
-    await axios.delete(`${API_URL}/projects/${projectId}`);
+    await axios.delete(`${API_URL}/projects/${projectId}`, { 
+      headers: getAuthHeaders() 
+    });
   } catch (error) {
     console.error('Failed to delete project:', error);
     throw error;
