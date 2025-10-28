@@ -1,179 +1,186 @@
-# CipherStudio 🚀
+# CipherStudio
 
-A full-stack browser-based React IDE with MongoDB authentication. Code, preview, and save React projects in the cloud.
+A modern, browser-based React IDE with real-time preview, project management, and cloud storage.
 
-![React](https://img.shields.io/badge/React-18.2-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue)
-![Express](https://img.shields.io/badge/Express-4.18-green)
-![MongoDB](https://img.shields.io/badge/MongoDB-Latest-green)
+---
 
-## ✨ Features
+## 🏗️ Project Structure
 
-- 🔐 **Secure Authentication** - JWT-based user auth with MongoDB
-- 💻 **Live Code Editor** - Powered by Sandpack with real-time preview
-- 📁 **File Management** - Create, rename, and delete files
-- 💾 **Auto-save** - Never lose your work (saves every 2 seconds)
-- 🎨 **Light/Dark Theme** - Full theme support
-- ☁️ **Cloud Storage** - Access projects from anywhere
-- 📱 **Responsive Design** - Works on all devices
+This project is separated into **frontend** and **backend**:
+
+```
+CompletedProject/
+├── reactCode/          # Frontend (React + Vite)
+│   ├── src/
+│   ├── package.json
+│   └── vercel.json
+│
+└── backend/            # Backend (Express + Prisma + MongoDB)
+    ├── src/
+    ├── prisma/
+    ├── package.json
+    └── README.md
+```
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 16+
-- MongoDB (local or MongoDB Atlas)
 
-### Installation
+- Node.js 18+
+- MongoDB database (MongoDB Atlas recommended)
+- npm or yarn
 
-1. **Clone the repository**
+### 1. Setup Backend
+
 ```bash
-git clone https://github.com/sonal1201/CipherSchools.git
-cd CipherSchools
-```
-
-2. **Install dependencies**
-```bash
+cd backend
 npm install
-```
-
-3. **Setup environment variables**
-
-Create a `.env` file:
-```env
-DATABASE_URL="your_mongodb_connection_string"
-JWT_SECRET="your_secure_jwt_secret"
-PORT=3001
-```
-
-4. **Setup database**
-```bash
+cp .env.example .env
+# Edit .env with your DATABASE_URL and JWT_SECRET
 npm run prisma:generate
-npm run prisma:push
-```
-
-5. **Start the application**
-
-Terminal 1 - Backend:
-```bash
-npm run server
-```
-
-Terminal 2 - Frontend:
-```bash
 npm run dev
 ```
 
-6. **Open your browser**
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:3001/api
+Backend runs on: `http://localhost:5000`
+
+### 2. Setup Frontend
+
+```bash
+cd reactCode
+npm install
+cp .env.example .env
+# Edit .env with VITE_API_URL=http://localhost:5000/api
+npm run dev
+```
+
+Frontend runs on: `http://localhost:5173`
+
+---
+
+## 📦 Deployment
+
+### Backend Deployment (Railway/Render)
+
+See `backend/DEPLOYMENT.md` for detailed instructions.
+
+**Railway (Recommended)**:
+1. Push backend to GitHub
+2. Connect to Railway
+3. Add environment variables
+4. Deploy!
+
+**Render (Free Tier)**:
+1. Create Web Service on Render
+2. Connect GitHub repo
+3. Add environment variables
+4. Deploy!
+
+After deployment, you'll get a URL like:
+- Railway: `https://your-app.up.railway.app`
+- Render: `https://your-app.onrender.com`
+
+### Frontend Deployment (Vercel)
+
+1. Update `.env.production` in frontend:
+   ```
+   VITE_API_URL=https://your-backend-url.com/api
+   ```
+
+2. Deploy to Vercel:
+   ```bash
+   cd reactCode
+   vercel
+   ```
+
+3. Set environment variable in Vercel dashboard:
+   - `VITE_API_URL` → Your backend URL + `/api`
+
+---
+
+## ✨ Features
+
+- ✅ **Browser-based IDE** - Code React components instantly
+- ✅ **Real-time Preview** - See changes as you type
+- ✅ **Project Management** - Create, save, and organize projects
+- ✅ **Authentication** - Secure user accounts with JWT
+- ✅ **Cloud Storage** - Projects saved to MongoDB
+- ✅ **Responsive UI** - Works on desktop and mobile
+- ✅ **Dark/Light Theme** - Toggle between themes
+- ✅ **File Explorer** - Manage multiple files per project
+
+---
 
 ## 🛠️ Tech Stack
 
-**Frontend:**
-- React 18 + TypeScript
+**Frontend**:
+- React 18
+- TypeScript
 - Vite
-- Tailwind CSS
-- Sandpack (Code Editor)
+- TailwindCSS
 - React Router
+- Sandpack (CodeSandbox)
+- Axios
 
-**Backend:**
+**Backend**:
 - Express.js
 - Prisma ORM
 - MongoDB
 - JWT Authentication
 - bcryptjs
-
-## 📦 Project Structure
-
-```
-CipherSchools/
-├── src/                    # Frontend React app
-│   ├── components/         # UI components
-│   ├── contexts/           # State management
-│   └── utils/              # Utilities
-├── server/                 # Backend Express API
-│   ├── routes/             # API routes
-│   └── middleware/         # Auth middleware
-├── prisma/                 # Database schema
-└── .env                    # Environment variables
-```
-
-## 🎯 Available Scripts
-
-```bash
-npm run dev              # Start frontend dev server
-npm run server           # Start backend server
-npm run prisma:generate  # Generate Prisma Client
-npm run prisma:push      # Push schema to database
-npm run build            # Build for production
-```
-
-## 📖 Usage
-
-1. **Register** - Create an account at http://localhost:5173
-2. **Login** - Sign in with your credentials
-3. **Create Project** - Click "New Project" on dashboard
-4. **Start Coding** - Use the IDE with live preview
-5. **Auto-save** - Your work is automatically saved
-
-## 🔐 API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/me` - Get current user
-
-### Projects (Protected)
-- `GET /api/projects` - Get all projects
-- `POST /api/projects` - Create project
-- `PUT /api/projects/:id` - Update project
-- `DELETE /api/projects/:id` - Delete project
-
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended - All-in-One)
-
-Deploy both frontend and backend to Vercel for free!
-
-**Quick Steps:**
-1. Create MongoDB Atlas account (free)
-2. Import project to Vercel from GitHub
-3. Add environment variables (DATABASE_URL, JWT_SECRET)
-4. Deploy!
-
-**📖 Detailed Guide:** See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)
-
-### Alternative: Split Deployment
-
-- **Frontend** → Vercel
-- **Backend** → Railway/Render
-
-**📖 Guide:** See [DEPLOYMENT.md](./DEPLOYMENT.md)
-
-## 🐛 Troubleshooting
-
-**Backend won't start?**
-- Check `.env` file exists with correct MongoDB URL
-- Run `npm run prisma:generate`
-
-**Can't connect to database?**
-- Verify MongoDB is running
-- Check DATABASE_URL in `.env`
-
-**Frontend can't connect to backend?**
-- Ensure backend is running on port 3001
-- Check browser console for errors
-
-## 📝 License
-
-MIT License - feel free to use this project for learning or commercial purposes.
-
-## 🙏 Acknowledgments
-
-Built with ❤️ using React, TypeScript, Express, MongoDB, Prisma, and Sandpack.
+- TypeScript
 
 ---
 
-**Happy Coding! 🎉**
+## 📝 Environment Variables
 
-Visit: https://github.com/sonal1201/CipherSchools
+### Backend (.env)
+
+```env
+DATABASE_URL=mongodb+srv://...
+JWT_SECRET=your-secret-key
+PORT=5000
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
+```
+
+### Frontend (.env)
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+---
+
+## 🧪 Development
+
+### Backend
+
+```bash
+cd backend
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run prisma:studio # Open Prisma Studio
+```
+
+### Frontend
+
+```bash
+cd reactCode
+npm run dev          # Start Vite dev server
+npm run build        # Build for production
+npm run preview      # Preview production build
+```
+
+---
+
+## 📄 License
+
+MIT
+
+---
+
+## 👤 Author
+
+Created as part of CipherSchools assignment

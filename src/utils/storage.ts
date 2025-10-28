@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { Project, AppSettings } from '../types';
 
-// Use /api by default (production), only localhost if explicitly in dev
-const API_URL = import.meta.env.VITE_API_URL || '/api';
+// Backend API URL - update this for production deployment
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 const SETTINGS_KEY = 'cipherstudio_settings';
 
 // Helper function to get auth headers
