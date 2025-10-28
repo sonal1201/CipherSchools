@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Project, AppSettings } from '../types';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 const SETTINGS_KEY = 'cipherstudio_settings';
 
 // Project Storage - Now using backend API
