@@ -1,12 +1,20 @@
 import axios from 'axios';
 import { Project, AppSettings } from '../types';
 
-// In production on Vercel, use relative path (same domain)
-// In development, use localhost:3001
-const API_URL = import.meta.env.VITE_API_URL || 
-  (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app') 
-    ? '/api' 
-    : 'http://localhost:3001/api');
+// Function to get API URL dynamically
+const getApiUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  // Check if we're on production (not localhost)
+  const isProduction = typeof window !== 'undefined' && 
+    window.location.hostname !== 'localhost' && 
+    window.location.hostname !== '127.0.0.1';
+  
+  return isProduction ? '/api' : 'http://localhost:3001/api';
+};
+
+const API_URL = getApiUrl();
 const SETTINGS_KEY = 'cipherstudio_settings';
 
 // Project Storage - Now using backend API
