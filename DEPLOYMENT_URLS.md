@@ -1,5 +1,19 @@
 # CipherStudio Deployment URLs
 
+## ⚠️ IMPORTANT: Vercel Cache Issue
+
+**The build is failing due to Vercel caching old package-lock.json**
+
+### 🔧 FIX: Redeploy with "Skip Build Cache"
+
+1. Go to https://vercel.com/dashboard
+2. Select project: `cipher-studio-xi`
+3. Deployments → Click "..." on latest → Redeploy
+4. **✓ Check "Skip Build Cache"**
+5. Click Redeploy
+
+---
+
 ## 🌐 Live URLs
 
 ### Frontend
