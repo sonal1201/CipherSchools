@@ -5,7 +5,9 @@ import { clearOldLocalStorageProjects } from '../utils/clearOldData';
 // In production on Vercel, use relative path (same domain)
 // In development, use localhost:3001
 const API_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3001/api');
+  (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app') 
+    ? '/api' 
+    : 'http://localhost:3001/api');
 
 interface User {
   id: string;
