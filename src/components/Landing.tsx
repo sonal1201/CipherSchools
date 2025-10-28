@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, ArrowRight, Moon, Sun, CodeIcon } from 'lucide-react';
+import { ArrowRight, Moon, Sun } from 'lucide-react';
 import { Button } from './ui/Button';
 import { useTheme } from '../contexts/ThemeContext';
 import logo from '../assest/chiperlogo.png';
