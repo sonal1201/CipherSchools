@@ -1,6 +1,7 @@
 import { pool } from "../config/postgresDb.config.js";
 import TryCatch from "../middleware/tryCatach.middleware.js";
 import { Assignment } from "../models/assignment.model.js";
+import { Attempt } from "../models/attempts.model.js";
 import { compareResult } from "../utils/resultCompareHelper.js";
 import { IsVaildQuary } from "../utils/vaildQuery.utils.js";
 
@@ -31,7 +32,7 @@ export const getAssignmentById = TryCatch(async (req, res) => {
 
 export const excuteAssignment = TryCatch(async (req, res) => {
   const { id } = req.params;
-  const { sql } = req.body;
+  const { sql, sessionId } = req.body;
 
   if (!sql) {
     return res.status(400).json({
@@ -67,6 +68,32 @@ export const excuteAssignment = TryCatch(async (req, res) => {
       actual: rows,
       expected: assignment.expectedOutput.value,
     });
+
+    console.log(sessionId);
+
+    if (isCorrect) {
+      console.log(sessionId);
+      await Attempt.findOneAndUpdate(
+        {
+          sessionId: sessionId,
+          assignment: assignment._id,
+          isComplete: true,
+        },
+        {
+          $inc: {
+            attemptCount: 1,
+          },
+          $set: {
+            sqlQuery: sql,
+          },
+        },
+
+        {
+          upsert: true,
+          new: true,
+        }
+      );
+    }
 
     console.log(isCorrect);
 

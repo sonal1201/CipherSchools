@@ -2,6 +2,7 @@
 import EditorSql from "@/components/EditorSql";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import HintButton from "./ui/HintButton";
 
 export default function QuestionPanel({id}) {
   const [assignment, setAssignment] = useState();
@@ -135,6 +136,7 @@ export default function QuestionPanel({id}) {
           </ul>
         </div>
       )}
+    <HintButton question={assignment.data.question}/>
     </div>
   );
 }

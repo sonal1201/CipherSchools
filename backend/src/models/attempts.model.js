@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import assignmentModel from "./assignment.model";
 
 const attemptSchema = new mongoose.Schema({
-  userId: {
+  sessionId: {
     type: String,
     required: true,
   },
@@ -21,7 +20,6 @@ const attemptSchema = new mongoose.Schema({
   },
   lastAttempt: {
     type: Date,
-    require: true,
     default: Date.now(),
   },
   attemptCount: {
@@ -29,3 +27,5 @@ const attemptSchema = new mongoose.Schema({
     default: 0,
   },
 });
+
+export const Attempt = mongoose.model("Attempt", attemptSchema);
