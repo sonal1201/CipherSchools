@@ -1,9 +1,10 @@
-import React from 'react'
+"use client";
+import AllQuestion from "@/components/AllQuestion";
 
-const AssignmentPage = () => {
+export default function AssignmentPage() {
   return (
-    <div>AssignmentPage</div>
-  )
+    <div>
+      <AllQuestion/>
+    </div>
+  );
 }
-
-export default AssignmentPage

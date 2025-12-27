@@ -5,4 +5,4 @@ import { assignmentRoute } from "./assignment.route.js";
 export const v1Router = express.Router();
 
 v1Router.use("/user", userRouter);
-v1Router.use("/assignment", assignmentRoute);
+v1Router.use("/assignments", assignmentRoute);

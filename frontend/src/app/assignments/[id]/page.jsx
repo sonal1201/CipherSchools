@@ -1,9 +1,15 @@
-import React from 'react'
+"use client";
+import EditorSql from "@/components/EditorSql";
+import QuestionPanel from "@/components/QuestionPanel.jsx";
+import { useParams } from "next/navigation";
 
-const Assignment = () => {
+
+export default function Assignment() {
+  const { id } = useParams();
   return (
-    <div>Assignment</div>
-  )
+    <div>
+      <QuestionPanel id={id} />
+      <EditorSql />
+    </div>
+  );
 }
-
-export default Assignment
