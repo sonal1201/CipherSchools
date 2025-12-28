@@ -1,5 +1,5 @@
 "use client";
-import EditorSql from "@/components/EditorSql";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import HintButton from "./ui/HintButton";
@@ -35,33 +35,26 @@ export default function QuestionPanel({id}) {
   const expected = assignment.data.expectedOutput;
 
   return (
-    <div>
-      Assignment
+    <div className="question-panel">
       <h1>{assignment.data.title}</h1>
       <p>{assignment.data.question}</p>
       <p>Difficulty: {assignment.data.description}</p>
       {assignment.data.sampleTables.map((table) => (
-        <div key={table._id} style={{ marginTop: "24px" }}>
-          <h2 style={{ fontSize: "18px", fontWeight: "600" }}>
+        <div key={table._id}>
+          <h2 >
             Table: {table.tableName}
           </h2>
 
           <table
             border="1"
-            style={{
-              width: "30%",
-            }}
+            width="100%"
           >
             <thead>
               <tr>
                 {table.columns.map((col) => (
                   <th
                     key={col._id}
-                    style={{
-                      border: "1px solid #000",
-                      padding: "6px",
-                      textAlign: "left",
-                    }}
+                   
                   >
                     {col.columnName}
                   </th>
@@ -75,10 +68,7 @@ export default function QuestionPanel({id}) {
                   {table.columns.map((col) => (
                     <td
                       key={col._id}
-                      style={{
-                        border: "1px solid #000",
-                        padding: "6px",
-                      }}
+                    
                     >
                       {row[col.columnName]}
                     </td>
@@ -93,7 +83,7 @@ export default function QuestionPanel({id}) {
         <div>
           <h2>Expected Output</h2>
 
-          <table border="1" cellPadding="6">
+          <table border="1" cellPadding="10">
             <thead>
               <tr>
                 {Object.keys(expected.value[0]).map((key) => (

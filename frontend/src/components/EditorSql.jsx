@@ -4,6 +4,7 @@ import Editor from "@monaco-editor/react";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
+import OutputPanel from "./OutputPanel.jsx";
 
 export default function EditorSql() {
   const { id } = useParams();
@@ -49,34 +50,41 @@ export default function EditorSql() {
 
   return (
     <div>
-      <Editor
-        height="80vh"
-        width="50vw"
-        defaultLanguage="sql"
-        value={query}
-        theme="vs-dark"
-        onChange={(value) => setQuery(value || "")}
-        options={{
-          minimap: { enabled: false },
-          fontSize: 14,
-          scrollBeyondLastLine: false,
-        }}
-      />
+      <div className="editor-panel">
+        <Editor
+          height="50vh"
+          width="40vw"
+          defaultLanguage="sql"
+          value={query}
+          theme="vs-dark"
+          onChange={(value) => setQuery(value || "")}
+          options={{
+            minimap: { enabled: false },
+            fontSize: 14,
+            scrollBeyondLastLine: false,
+          }}
+        />
+        <div className="query-button">
+        <button
+          className="run-button"
+          onClick={handleSubmit}
+          disabled={loading}
+        >
+          {loading ? "Running..." : "Run"}
+        </button>
+       
+        </div>
 
-      <button onClick={handleSubmit} disabled={loading}>
-        {loading ? "Running..." : "Run"}
-      </button>
+      </div>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
       {isCorrect !== null && (
         <p style={{ color: isCorrect ? "green" : "orange" }}>
-          {isCorrect
-            ? "Correct query"
-            : "Query executed, but output is wrong"}
+          {isCorrect ? "Correct query" : "Query executed, but output is wrong"}
         </p>
       )}
 
-      {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
+      {result && <OutputPanel data={result} />}
     </div>
   );
 }

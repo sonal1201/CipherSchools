@@ -26,8 +26,8 @@ export default function HintButton({ question }) {
   };
 
   return (
-    <div style={{ marginTop: 16 }}>
-      <button onClick={getHint} disabled={loading}>
+    <div >
+      <button className="hint-button" onClick={getHint} disabled={loading}>
         {loading ? "Thinking…" : "Get Hint"}
       </button>
 
