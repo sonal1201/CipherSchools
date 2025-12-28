@@ -79,4 +79,22 @@ Frontend runs on `http://localhost:3000`
   * Prompted to guide, not solve
   * Used few-shot Prompting technique
 
+## Project Screenshots
+
+### Home Page (Assignments List) 
+Displays all available SQL assignments with difficulty and description.
+![Home Page](./screenshots/allQuestion.jpg)
+
+### Assignment Page
+Shows the question, table schema, sample data, and SQL editor.
+![Assignment Page](./screenshots/questionpanel.jpg)
+
+### Query Output
+Displays executed SQL query results in a structured table format.
+![Query Output](./screenshots/outputPanel.jpg)
+
+### Hint
+Provides hints using LLM without revealing the full solution.
+![Query Output](./screenshots/hint.jpg)
+
 ---
