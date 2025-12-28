@@ -91,7 +91,7 @@ Shows the question, table schema, sample data, and SQL editor.
 
 ### 3. Query Output
 Displays executed SQL query results in a structured table format.
-![Query Output](./screenshots/outputPanel.jpg)
+![Result Output](./screenshots/outputpanel.jpg)
 
 ### 4. Hint
 Provides hints using LLM without revealing the full solution.
