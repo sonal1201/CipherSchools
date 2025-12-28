@@ -95,6 +95,6 @@ Displays executed SQL query results in a structured table format.
 
 ### Hint
 Provides hints using LLM without revealing the full solution.
-![Query Output](./screenshots/hint.jpg)
+![Hint Output](./screenshots/hint.jpg)
 
 ---
