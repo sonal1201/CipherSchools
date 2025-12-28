@@ -1,5 +1,9 @@
 # CipherSqlStudio
 
+## DATA-FLOW DIAGRAM
+![Data Flow](./screenshots/data-flow-diagram.jpg)
+
+
 ### Folder Structure
 
 ```txt
